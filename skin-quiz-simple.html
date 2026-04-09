@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Analysis Quiz - Solara Premium Sunscreen</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Body background */
+        body {
+            background: 
+                linear-gradient(135deg, 
+                    rgba(244, 162, 97, 0.1) 0%, 
+                    rgba(231, 111, 81, 0.1) 50%, 
+                    rgba(42, 157, 143, 0.1) 100%),
+                url('https://images.unsplash.com/photo-1586395313571-9945e084c8db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        /* Simple quiz styles */
+        .simple-quiz {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        
+        .simple-quiz::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(244, 162, 97, 0.03) 0%, 
+                rgba(231, 111, 81, 0.03) 50%, 
+                rgba(42, 157, 143, 0.03) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .simple-quiz > * {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .quiz-question {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .quiz-question.active {
+            display: block;
+        }
+        
+        .quiz-question h3 {
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .quiz-option {
+            padding: 1.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .quiz-option:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .quiz-option input[type="radio"] {
+            display: none;
+        }
+        
+        .quiz-option.selected {
+            border-color: var(--primary-color);
+            background: linear-gradient(135deg, rgba(244, 162, 97, 0.1), rgba(244, 162, 97, 0.05));
+        }
+        
+        .quiz-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        
+        .quiz-progress {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 1rem;
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: white;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-dark);
+            border: 2px solid var(--text-dark);
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h1>Solara</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="products.html" class="nav-link">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="why-choose-us.html" class="nav-link">Why Choose Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="skin-quiz.html" class="nav-link">
+                            <i class="fas fa-magic"></i> Skin Quiz
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="cart.html" class="nav-link cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="simple-quiz">
+            <div class="quiz-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div>
+                    Question <span id="current-question">1</span> of <span id="total-questions">8</span>
+                </div>
+            </div>
+
+            <div class="quiz-question active" data-question="1">
+                <h3>How would you describe your skin's oiliness?</h3>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="oiliness" value="very_dry" required>
+                        <div>Very Dry - Often feels tight, flaky</div>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="oiliness" value="dry" required>
+                        <div>Dry - Sometimes feels tight</div>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="oiliness" value="normal" required>
+                        <div>Normal - Balanced moisture</div>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="oiliness" value="slightly_oily" required>
+                        <div>Slightly Oily - T-zone gets shiny</div>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="oiliness" value="oily" required>
+                        <div>Oily - Gets shiny quickly</div>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="oiliness" value="very_oily" required>
+                        <div>Very Oily - Always shiny</div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="quiz-question" data-question="2">
+                <h3>What is your natural skin tone?</h3>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="complexion" value="very_fair" required>
+                        <div>Very Fair - Burns easily</div>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="complexion" value="fair" required>
+                        <div>Fair - Sometimes burns</div>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="complexion" value="medium" required>
+                        <div>Medium - Tans gradually</div>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="complexion" value="olive" required>
+                        <div>Olive - Tans easily</div>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="complexion" value="tan" required>
+                        <div>Tan - Rarely burns</div>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="complexion" value="dark" required>
+                        <div>Dark - Very rarely burns</div>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="complexion" value="very_dark" required>
+                        <div>Very Dark - Never burns</div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="quiz-question" data-question="3">
+                <h3>How sensitive is your skin?</h3>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="sensitivity" value="not_sensitive" required>
+                        <div>Not Sensitive - Rarely reacts</div>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="sensitivity" value="slightly_sensitive" required>
+                        <div>Slightly Sensitive - Occasional reactions</div>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="sensitivity" value="sensitive" required>
+                        <div>Sensitive - Reacts to many products</div>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="sensitivity" value="very_sensitive" required>
+                        <div>Very Sensitive - Always careful</div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="quiz-question" data-question="4">
+                <h3>How often do you experience breakouts?</h3>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="breakouts" value="never" required>
+                        <div>Never - Clear skin</div>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="breakouts" value="rare" required>
+                        <div>Rare - Few times a year</div>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="breakouts" value="occasional" required>
+                        <div>Occasional - Monthly</div>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="breakouts" value="frequent" required>
+                        <div>Frequent - Weekly</div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="quiz-question" data-question="5">
+                <h3>How would you describe your pore size?</h3>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="pores" value="very_small" required>
+                        <div>Very Small - Barely visible</div>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="pores" value="small" required>
+                        <div>Small - Difficult to see</div>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="pores" value="normal" required>
+                        <div>Normal - Balanced appearance</div>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="pores" value="large" required>
+                        <div>Large - Easily visible</div>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="pores" value="very_large" required>
+                        <div>Very Large - Very visible</div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="quiz-question" data-question="6">
+                <h3>What's your typical climate/environment?</h3>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="temperature" value="cold" required>
+                        <div>Cold - Winter dominant</div>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="temperature" value="moderate" required>
+                        <div>Moderate - Seasonal changes</div>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="temperature" value="hot" required>
+                        <div>Hot - Summer dominant</div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="quiz-question" data-question="7">
+                <h3>How humid is your environment?</h3>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="humidity" value="low" required>
+                        <div>Low - Dry air</div>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="humidity" value="moderate" required>
+                        <div>Moderate - Balanced humidity</div>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="humidity" value="high" required>
+                        <div>High - Humid air</div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="quiz-question" data-question="8">
+                <h3>How certain are you about your answers?</h3>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="certainty_level" value="very_certain" required>
+                        <div>Very Certain - I know my skin well</div>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="certainty_level" value="certain" required>
+                        <div>Certain - Confident in answers</div>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="certainty_level" value="somewhat_certain" required>
+                        <div>Somewhat Certain - Pretty sure</div>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="certainty_level" value="uncertain" required>
+                        <div>Uncertain - Just guessing</div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="quiz-navigation">
+                <button type="button" class="btn btn-secondary" id="prev-btn" disabled>
+                    <i class="fas fa-arrow-left"></i> Previous
+                </button>
+                <button type="button" class="btn btn-primary" id="next-btn" disabled>
+                    Next <i class="fas fa-arrow-right"></i>
+                </button>
+                <button type="button" class="btn btn-primary" id="submit-btn" style="display: none;">
+                    Get My Recommendations <i class="fas fa-magic"></i>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Simple quiz functionality
+        let currentQuestion = 1;
+        const totalQuestions = 8;
+        const responses = {};
+
+        function initQuiz() {
+            console.log('Simple quiz initialized');
+            updateProgress();
+            setupEventListeners();
+        }
+
+        function setupEventListeners() {
+            // Navigation buttons
+            document.getElementById('next-btn').addEventListener('click', nextQuestion);
+            document.getElementById('prev-btn').addEventListener('click', previousQuestion);
+            document.getElementById('submit-btn').addEventListener('click', submitQuiz);
+
+            // Radio button changes
+            document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                radio.addEventListener('change', handleAnswerChange);
+            });
+        }
+
+        function handleAnswerChange() {
+            const currentQuestionBlock = document.querySelector(`.quiz-question[data-question="${currentQuestion}"]`);
+            const selectedOption = currentQuestionBlock.querySelector('input[type="radio"]:checked');
+            
+            if (selectedOption) {
+                const questionName = selectedOption.name;
+                responses[questionName] = selectedOption.value;
+                
+                // Enable next button
+                document.getElementById('next-btn').disabled = false;
+                
+                // Update selected option styling
+                updateOptionStyling(currentQuestionBlock);
+            }
+        }
+
+        function updateOptionStyling(questionBlock) {
+            const options = questionBlock.querySelectorAll('.quiz-option');
+            options.forEach(option => {
+                const radio = option.querySelector('input[type="radio"]');
+                if (radio.checked) {
+                    option.classList.add('selected');
+                } else {
+                    option.classList.remove('selected');
+                }
+            });
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < totalQuestions) {
+                // Hide current question
+                const currentBlock = document.querySelector(`.quiz-question[data-question="${currentQuestion}"]`);
+                currentBlock.classList.remove('active');
+                
+                // Show next question
+                currentQuestion++;
+                const nextBlock = document.querySelector(`.quiz-question[data-question="${currentQuestion}"]`);
+                nextBlock.classList.add('active');
+                
+                updateProgress();
+                updateNavigationButtons();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 1) {
+                // Hide current question
+                const currentBlock = document.querySelector(`.quiz-question[data-question="${currentQuestion}"]`);
+                currentBlock.classList.remove('active');
+                
+                // Show previous question
+                currentQuestion--;
+                const prevBlock = document.querySelector(`.quiz-question[data-question="${currentQuestion}"]`);
+                prevBlock.classList.add('active');
+                
+                updateProgress();
+                updateNavigationButtons();
+                updateOptionStyling(prevBlock);
+            }
+        }
+
+        function updateProgress() {
+            const progressFill = document.getElementById('progress-fill');
+            const currentQuestionSpan = document.getElementById('current-question');
+            
+            const progress = (currentQuestion / totalQuestions) * 100;
+            progressFill.style.width = `${progress}%`;
+            currentQuestionSpan.textContent = currentQuestion;
+        }
+
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const submitBtn = document.getElementById('submit-btn');
+
+            // Previous button
+            prevBtn.disabled = currentQuestion === 1;
+
+            // Next/Submit button
+            if (currentQuestion === totalQuestions) {
+                nextBtn.style.display = 'none';
+                submitBtn.style.display = 'inline-flex';
+            } else {
+                nextBtn.style.display = 'inline-flex';
+                submitBtn.style.display = 'none';
+                nextBtn.disabled = !isCurrentQuestionAnswered();
+            }
+        }
+
+        function isCurrentQuestionAnswered() {
+            const currentBlock = document.querySelector(`.quiz-question[data-question="${currentQuestion}"]`);
+            const selectedOption = currentBlock.querySelector('input[type="radio"]:checked');
+            return selectedOption !== null;
+        }
+
+        function submitQuiz() {
+            console.log('Quiz submitted!', responses);
+            analyzeResponses();
+        }
+
+        function analyzeResponses() {
+            // Enhanced analysis based on dataset
+            console.log('Analyzing responses:', responses);
+            const analysis = analyzeSkinType(responses);
+            console.log('Analysis result:', analysis);
+            const recommendations = getRecommendations(analysis);
+            console.log('Recommendations:', recommendations);
+            showResults(analysis, recommendations);
+        }
+
+        function analyzeSkinType(responses) {
+            let skinType = 'combination'; // Default
+            let skinTone = 'medium'; // Default
+            let sensitivity = 'medium'; // Default
+            let spfRecommendation = 'SPF 50';
+            let productType = 'lotion';
+            
+            // Determine skin type based on dataset patterns
+            if (responses.oiliness === 'very_oily' || responses.oiliness === 'oily') {
+                skinType = 'oily';
+                productType = 'matte gel';
+            } else if (responses.oiliness === 'very_dry' || responses.oiliness === 'dry') {
+                skinType = 'dry';
+                productType = 'hydrating cream';
+            } else if (responses.oiliness === 'normal') {
+                skinType = 'combination';
+                productType = 'lotion';
+            }
+            
+            // Determine skin tone based on dataset categories
+            if (responses.complexion) {
+                if (responses.complexion === 'very_fair' || responses.complexion === 'fair') {
+                    skinTone = 'fair';
+                } else if (responses.complexion === 'medium' || responses.complexion === 'olive') {
+                    skinTone = 'medium';
+                } else if (responses.complexion === 'tan' || responses.complexion === 'dark' || responses.complexion === 'very_dark') {
+                    skinTone = 'dark';
+                }
+            }
+            
+            // Determine sensitivity based on dataset
+            if (responses.sensitivity) {
+                if (responses.sensitivity === 'very_sensitive' || responses.sensitivity === 'sensitive') {
+                    sensitivity = 'high';
+                } else if (responses.sensitivity === 'slightly_sensitive') {
+                    sensitivity = 'medium';
+                } else {
+                    sensitivity = 'low';
+                }
+            }
+            
+            // SPF recommendation based on dataset logic
+            if (skinType === 'dry' && (skinTone === 'fair' || skinTone === 'medium')) {
+                spfRecommendation = 'SPF 50'; // Dataset shows SPF 50 for most dry skin
+            } else if (skinType === 'dry' && sensitivity === 'low') {
+                spfRecommendation = 'SPF 30'; // Only low sensitivity dry skin gets SPF 30
+            } else {
+                spfRecommendation = 'SPF 50'; // Default for most combinations
+            }
+            
+            return {
+                skin_type: skinType,
+                skin_tone: skinTone,
+                sensitivity: sensitivity,
+                recommended_spf: spfRecommendation,
+                product_type: productType,
+                concerns: getConcerns(responses)
+            };
+        }
+
+        function getConcerns(responses) {
+            const concerns = [];
+            
+            // Acne concerns
+            if (responses.breakouts === 'frequent' || responses.breakouts === 'occasional') {
+                concerns.push('acne-prone');
+                console.log('Added acne-prone concern');
+            }
+            
+            // Pore concerns
+            if (responses.pores === 'large' || responses.pores === 'very_large') {
+                concerns.push('enlarged pores');
+                console.log('Added enlarged pores concern');
+            }
+            
+            // Oil concerns
+            if (responses.oiliness === 'oily' || responses.oiliness === 'very_oily') {
+                concerns.push('excess oil');
+                console.log('Added excess oil concern');
+            }
+            
+            // Dryness concerns
+            if (responses.oiliness === 'dry' || responses.oiliness === 'very_dry') {
+                concerns.push('dryness');
+                console.log('Added dryness concern');
+            }
+            
+            console.log('Final concerns:', concerns);
+            return concerns;
+        }
+
+        function getRecommendations(analysis) {
+            // Products based on the actual dataset
+            const products = [
+                {
+                    id: 'combination-lotion-medium',
+                    name: 'Combination Skin Lotion - Medium Tone',
+                    category: 'combination',
+                    spf: 50,
+                    price: 599,
+                    skin_types: ['combination'],
+                    skin_tones: ['medium', 'fair'],
+                    product_type: 'lotion',
+                    benefits: ['Lightweight', 'Balanced protection'],
+                    match_score: 0
+                },
+                {
+                    id: 'acne-matte-gel-fair',
+                    name: 'Acne-Prone Matte Gel - Fair Tone',
+                    category: 'acne',
+                    spf: 50,
+                    price: 649,
+                    skin_types: ['acne'],
+                    skin_tones: ['fair'],
+                    product_type: 'matte gel',
+                    benefits: ['Lightweight', 'Non-comedogenic', 'Oil control'],
+                    match_score: 0
+                },
+                {
+                    id: 'dry-hydrating-cream-fair',
+                    name: 'Dry Skin Hydrating Cream - Fair Tone',
+                    category: 'dry',
+                    spf: 50,
+                    price: 599,
+                    skin_types: ['dry'],
+                    skin_tones: ['fair'],
+                    product_type: 'hydrating cream',
+                    benefits: ['Lightweight', 'Deep hydration', 'High protection'],
+                    match_score: 0
+                },
+                {
+                    id: 'oily-matte-gel-medium',
+                    name: 'Oily Skin Matte Gel - Medium Tone',
+                    category: 'oily',
+                    spf: 50,
+                    price: 599,
+                    skin_types: ['oily'],
+                    skin_tones: ['medium'],
+                    product_type: 'matte gel',
+                    benefits: ['Lightweight', 'Oil control', 'High protection'],
+                    match_score: 0
+                },
+                {
+                    id: 'acne-matte-gel-fair-low',
+                    name: 'Acne-Prone Matte Gel - Fair Tone (Low Sensitivity)',
+                    category: 'acne',
+                    spf: 50,
+                    price: 649,
+                    skin_types: ['acne'],
+                    skin_tones: ['fair'],
+                    product_type: 'matte gel',
+                    benefits: ['Lightweight', 'Non-comedogenic', 'High protection'],
+                    match_score: 0
+                },
+                {
+                    id: 'oily-matte-gel-dark',
+                    name: 'Oily Skin Matte Gel - Dark Tone',
+                    category: 'oily',
+                    spf: 50,
+                    price: 699,
+                    skin_types: ['oily'],
+                    skin_tones: ['dark'],
+                    product_type: 'matte gel',
+                    benefits: ['No white cast', 'Oil control', 'Lightweight'],
+                    match_score: 0
+                },
+                {
+                    id: 'acne-matte-gel-medium',
+                    name: 'Acne-Prone Matte Gel - Medium Tone',
+                    category: 'acne',
+                    spf: 50,
+                    price: 649,
+                    skin_types: ['acne'],
+                    skin_tones: ['medium'],
+                    product_type: 'matte gel',
+                    benefits: ['Lightweight', 'Non-comedogenic', 'Oil control'],
+                    match_score: 0
+                },
+                {
+                    id: 'dry-hydrating-cream-medium',
+                    name: 'Dry Skin Hydrating Cream - Medium Tone',
+                    category: 'dry',
+                    spf: 30,
+                    price: 549,
+                    skin_types: ['dry'],
+                    skin_tones: ['medium'],
+                    product_type: 'hydrating cream',
+                    benefits: ['Lightweight', 'Deep hydration', 'Low protection'],
+                    match_score: 0
+                },
+                {
+                    id: 'oily-matte-gel-medium-low',
+                    name: 'Oily Skin Matte Gel - Medium Tone (Low Sensitivity)',
+                    category: 'oily',
+                    spf: 50,
+                    price: 599,
+                    skin_types: ['oily'],
+                    skin_tones: ['medium'],
+                    product_type: 'matte gel',
+                    benefits: ['Lightweight', 'Oil control', 'Medium protection'],
+                    match_score: 0
+                },
+                {
+                    id: 'oily-matte-gel-medium-high',
+                    name: 'Oily Skin Matte Gel - Medium Tone (High Sensitivity)',
+                    category: 'oily',
+                    spf: 50,
+                    price: 649,
+                    skin_types: ['oily'],
+                    skin_tones: ['medium'],
+                    product_type: 'matte gel',
+                    benefits: ['Lightweight', 'Oil control', 'High protection'],
+                    match_score: 0
+                },
+                {
+                    id: 'acne-matte-gel-dark',
+                    name: 'Acne-Prone Matte Gel - Dark Tone',
+                    category: 'acne',
+                    spf: 50,
+                    price: 699,
+                    skin_types: ['acne'],
+                    skin_tones: ['dark'],
+                    product_type: 'matte gel',
+                    benefits: ['No white cast', 'Non-comedogenic', 'Lightweight'],
+                    match_score: 0
+                },
+                {
+                    id: 'combination-lotion-dark',
+                    name: 'Combination Skin Lotion - Dark Tone',
+                    category: 'combination',
+                    spf: 50,
+                    price: 699,
+                    skin_types: ['combination'],
+                    skin_tones: ['dark'],
+                    product_type: 'lotion',
+                    benefits: ['No white cast', 'Lightweight', 'Low protection'],
+                    match_score: 0
+                },
+                {
+                    id: 'dry-hydrating-cream-fair-high',
+                    name: 'Dry Skin Hydrating Cream - Fair Tone (High Protection)',
+                    category: 'dry',
+                    spf: 50,
+                    price: 699,
+                    skin_types: ['dry'],
+                    skin_tones: ['fair'],
+                    product_type: 'hydrating cream',
+                    benefits: ['Lightweight', 'Deep hydration', 'High protection'],
+                    match_score: 0
+                },
+                {
+                    id: 'dry-hydrating-cream-medium-high',
+                    name: 'Dry Skin Hydrating Cream - Medium Tone (High Protection)',
+                    category: 'dry',
+                    spf: 50,
+                    price: 699,
+                    skin_types: ['dry'],
+                    skin_tones: ['medium'],
+                    product_type: 'hydrating cream',
+                    benefits: ['Lightweight', 'Deep hydration', 'High protection'],
+                    match_score: 0
+                },
+                {
+                    id: 'oily-matte-gel-dark-high',
+                    name: 'Oily Skin Matte Gel - Dark Tone (High Protection)',
+                    category: 'oily',
+                    spf: 50,
+                    price: 799,
+                    skin_types: ['oily'],
+                    skin_tones: ['dark'],
+                    product_type: 'matte gel',
+                    benefits: ['No white cast', 'Oil control', 'High protection'],
+                    match_score: 0
+                },
+                {
+                    id: 'acne-matte-gel-medium-high',
+                    name: 'Acne-Prone Matte Gel - Medium Tone (High Protection)',
+                    category: 'acne',
+                    spf: 50,
+                    price: 799,
+                    skin_types: ['acne'],
+                    skin_tones: ['medium'],
+                    product_type: 'matte gel',
+                    benefits: ['Lightweight', 'Non-comedogenic', 'High protection'],
+                    match_score: 0
+                },
+                {
+                    id: 'dry-hydrating-cream-dark',
+                    name: 'Dry Skin Hydrating Cream - Dark Tone',
+                    category: 'dry',
+                    spf: 50,
+                    price: 799,
+                    skin_types: ['dry'],
+                    skin_tones: ['dark'],
+                    product_type: 'hydrating cream',
+                    benefits: ['No white cast', 'Deep hydration', 'High protection'],
+                    match_score: 0
+                }
+            ];
+
+            // Calculate match scores
+            products.forEach(product => {
+                let score = 0;
+                
+                // Skin type match (40 points)
+                if (product.skin_types && product.skin_types.includes(analysis.skin_type)) {
+                    score += 40;
+                    console.log(`Product ${product.id} matched skin type: ${analysis.skin_type}`);
+                }
+                
+                // Skin tone match (30 points)
+                if (product.skin_tones && product.skin_tones.includes(analysis.skin_tone)) {
+                    score += 30;
+                    console.log(`Product ${product.id} matched skin tone: ${analysis.skin_tone}`);
+                }
+                
+                // Product type match (20 points)
+                if (product.product_type === analysis.product_type) {
+                    score += 20;
+                    console.log(`Product ${product.id} matched product type: ${analysis.product_type}`);
+                }
+                
+                // SPF appropriateness (10 points)
+                const productSPF = parseInt(product.spf.toString());
+                const recommendedSPF = parseInt(analysis.recommended_spf.replace('SPF ', ''));
+                if (Math.abs(productSPF - recommendedSPF) <= 20) {
+                    score += 10;
+                    console.log(`Product ${product.id} matched SPF: ${productSPF} vs ${recommendedSPF}`);
+                }
+                
+                // Concern matching (15 points per concern)
+                if (analysis.concerns && analysis.concerns.length > 0) {
+                    analysis.concerns.forEach(concern => {
+                        if (product.benefits && product.benefits.some(benefit => 
+                            benefit.toLowerCase().includes(concern.toLowerCase()))) {
+                            score += 15;
+                            console.log(`Product ${product.id} matched concern: ${concern}`);
+                        }
+                    });
+                }
+                
+                product.match_score = score;
+                console.log(`Product ${product.id} final score: ${score}`);
+            });
+
+            // Sort by match score
+            const sortedProducts = products.sort((a, b) => b.match_score - a.match_score);
+            console.log('Sorted products:', sortedProducts);
+            
+            // Ensure we have at least one recommendation
+            if (sortedProducts.length === 0 || sortedProducts[0].match_score === 0) {
+                // Add a default recommendation
+                console.log('No good matches found, adding default recommendation');
+                return [{
+                    id: 'combination-lotion-medium',
+                    name: 'Combination Skin Lotion - Medium Tone',
+                    category: 'combination',
+                    spf: 50,
+                    price: 599,
+                    skin_types: ['combination'],
+                    skin_tones: ['medium', 'fair'],
+                    product_type: 'lotion',
+                    benefits: ['Lightweight', 'Balanced protection'],
+                    match_score: 10
+                }];
+            }
+            
+            return sortedProducts;
+        }
+
+        function showResults(analysis, recommendations) {
+            console.log('Showing results with analysis:', analysis);
+            console.log('Showing results with recommendations:', recommendations);
+            const topProduct = recommendations[0];
+            const secondaryProducts = recommendations.slice(1, 3);
+            console.log('Top product:', topProduct);
+            console.log('Secondary products:', secondaryProducts);
+            
+            const quizContainer = document.querySelector('.simple-quiz');
+            quizContainer.innerHTML = `
+                <div style="text-align: center; padding: 3rem;">
+                    <h2>Your Personalized Sunscreen Recommendations</h2>
+                    
+                    <div style="background: linear-gradient(135deg, #f4a261, #e76f51); color: white; padding: 2rem; border-radius: 15px; margin: 2rem 0;">
+                        <h3 style="color: white; margin-bottom: 1rem;">Your Skin Profile</h3>
+                        <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 10px;">
+                            <p><strong>Skin Type:</strong> ${analysis.skin_type}</p>
+                            <p><strong>Skin Tone:</strong> ${analysis.skin_tone}</p>
+                            <p><strong>Sensitivity:</strong> ${analysis.sensitivity}</p>
+                            <p><strong>Recommended SPF:</strong> ${analysis.recommended_spf}</p>
+                            <p><strong>Concerns:</strong> ${analysis.concerns.join(', ')}</p>
+                        </div>
+                    </div>
+
+                    ${topProduct ? `
+                    <div style="background: #f5f5f5; padding: 2rem; border-radius: 15px; margin: 2rem 0; border: 2px solid #f4a261;">
+                        <h3 style="color: #f4a261; margin-bottom: 1.5rem;">Perfect Match For You</h3>
+                        <div style="background: white; padding: 2rem; border-radius: 10px; text-align: left;">
+                            <h4 style="color: #333; margin-bottom: 1rem;">${topProduct.name}</h4>
+                            <p><strong>SPF:</strong> ${topProduct.spf}+</p>
+                            <p><strong>Price:</strong> Rs. ${topProduct.price}</p>
+                            <p><strong>Type:</strong> ${topProduct.product_type}</p>
+                            <p><strong>Benefits:</strong> ${topProduct.benefits.join(', ')}</p>
+                            <p><strong>Match Score:</strong> ${topProduct.match_score}/100</p>
+                            <button class="btn btn-primary" style="margin-top: 1rem; width: 100%;" onclick="addToCart('${topProduct.id}')">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    ` : `
+                    <div style="background: #f5f5f5; padding: 2rem; border-radius: 15px; margin: 2rem 0;">
+                        <h3 style="color: #666; margin-bottom: 1.5rem;">No Perfect Match Found</h3>
+                        <div style="background: white; padding: 2rem; border-radius: 10px; text-align: center;">
+                            <p style="color: #666; margin-bottom: 1rem;">We couldn't find a perfect match for your skin profile.</p>
+                            <p style="color: #666; margin-bottom: 2rem;">Here are some general recommendations based on your responses:</p>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 2rem;">
+                                <div style="background: white; padding: 1.5rem; border-radius: 10px; text-align: left; border: 1px solid #ddd;">
+                                    <h4 style="color: #333; margin-bottom: 0.5rem;">Combination Skin Lotion</h4>
+                                    <p><strong>SPF:</strong> 50+</p>
+                                    <p><strong>Price:</strong> Rs. 599</p>
+                                    <p><strong>Benefits:</strong> Lightweight, Balanced protection</p>
+                                    <button class="btn btn-secondary" style="margin-top: 0.5rem; width: 100%;" onclick="addToCart('combination-lotion-medium')">
+                                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    `}
+
+                    ${secondaryProducts.length > 0 ? `
+                    <div style="background: #f9f9f9; padding: 2rem; border-radius: 15px; margin: 2rem 0;">
+                        <h3 style="color: #666; margin-bottom: 1.5rem;">Also Great For You</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                            ${secondaryProducts.map(product => `
+                                <div style="background: white; padding: 1.5rem; border-radius: 10px; text-align: left; border: 1px solid #ddd;">
+                                    <h4 style="color: #333; margin-bottom: 0.5rem;">${product.name}</h4>
+                                    <p><strong>SPF:</strong> ${product.spf}+</p>
+                                    <p><strong>Price:</strong> Rs. ${product.price}</p>
+                                    <p><strong>Match:</strong> ${product.match_score}/100</p>
+                                    <button class="btn btn-secondary" style="margin-top: 0.5rem; width: 100%;" onclick="addToCart('${product.id}')">
+                                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                                    </button>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    ` : ''}
+
+                    <div style="margin-top: 3rem;">
+                        <button class="btn btn-primary" onclick="window.location.href='products.html'">
+                            <i class="fas fa-shopping-bag"></i> Shop All Products
+                        </button>
+                        <button class="btn btn-secondary" onclick="location.reload()">
+                            <i class="fas fa-redo"></i> Retake Quiz
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function addToCart(productId) {
+            // Show notification
+            showNotification('Adding to cart...', 'info');
+            
+            // Add to cart via API
+            fetch('/api/cart/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Session-ID': getOrCreateSessionId()
+                },
+                body: JSON.stringify({
+                    productId: productId,
+                    quantity: 1
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showNotification('Product added to cart!', 'success');
+                    // Update cart count
+                    const cartCount = document.querySelector('.cart-count');
+                    if (cartCount) {
+                        cartCount.textContent = parseInt(cartCount.textContent) + 1;
+                    }
+                } else {
+                    showNotification('Failed to add product to cart', 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Error adding to cart:', error);
+                showNotification('Error adding product to cart', 'error');
+            });
+        }
+
+        function getOrCreateSessionId() {
+            let sessionId = localStorage.getItem('solara_session_id');
+            if (!sessionId) {
+                sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                localStorage.setItem('solara_session_id', sessionId);
+            }
+            return sessionId;
+        }
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: ${type === 'success' ? '#2a9d8f' : type === 'error' ? '#e76f51' : '#f4a261'};
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+                z-index: 10000;
+                transform: translateX(400px);
+                transition: transform 0.3s ease;
+                max-width: 300px;
+            `;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(400px)';
+                setTimeout(() => {
+                    if (document.body.contains(notification)) {
+                        document.body.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // Initialize quiz when page loads
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initQuiz);
+        } else {
+            initQuiz();
+        }
+    </script>
+</body>
+</html>

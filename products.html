@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Solara Premium Sunscreen</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h1>Solara</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="products.html" class="nav-link active">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="why-choose-us.html" class="nav-link">Why Choose Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="skin-quiz-simple.html" class="nav-link">
+                            <i class="fas fa-magic"></i> Skin Quiz
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="orders.html" class="nav-link">
+                            <i class="fas fa-shopping-bag"></i> My Orders
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="cart.html" class="nav-link cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Our Products</h1>
+                <p>Find your perfect sunscreen match based on your skin type</p>
+            </div>
+        </section>
+
+        <section class="products-filter">
+            <div class="container">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All Products</button>
+                    <button class="filter-btn" data-filter="oily">Oily Skin</button>
+                    <button class="filter-btn" data-filter="dry">Dry Skin</button>
+                    <button class="filter-btn" data-filter="combination">Combination Skin</button>
+                    <button class="filter-btn" data-filter="acne">Acne-Prone</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="products-section">
+            <div class="container">
+                <div class="products-grid">
+                    <div class="product-card" data-category="oily">
+                        <div class="product-badge">Bestseller</div>
+                        <div class="product-image">
+                            <div class="product-bottle-full oily-skin"></div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Oily Skin Solution</h3>
+                            <p class="product-spf">SPF 50+ PA+++</p>
+                            <p class="product-description">Oil-free, mattifying formula with niacinamide for shine-free protection. Perfect for humid climates.</p>
+                            <ul class="product-features">
+                                <li><i class="fas fa-check"></i> No white cast</li>
+                                <li><i class="fas fa-check"></i> Sweat-proof</li>
+                                <li><i class="fas fa-check"></i> Non-comedogenic</li>
+                            </ul>
+                            <div class="product-price">₹599</div>
+                            <div class="product-actions">
+                                <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                                <button class="btn btn-outline quick-view">Quick View</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="dry">
+                        <div class="product-badge">New</div>
+                        <div class="product-image">
+                            <div class="product-bottle-full dry-skin"></div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Dry Skin Comfort</h3>
+                            <p class="product-spf">SPF 50+ PA+++</p>
+                            <p class="product-description">Hydrating formula with hyaluronic acid and ceramides for moisturized, protected skin.</p>
+                            <ul class="product-features">
+                                <li><i class="fas fa-check"></i> Deep hydration</li>
+                                <li><i class="fas fa-check"></i> No white cast</li>
+                                <li><i class="fas fa-check"></i> Lightweight</li>
+                            </ul>
+                            <div class="product-price">₹599</div>
+                            <div class="product-actions">
+                                <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                                <button class="btn btn-outline quick-view">Quick View</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="combination">
+                        <div class="product-image">
+                            <div class="product-bottle-full combination-skin"></div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Combination Skin Balance</h3>
+                            <p class="product-spf">SPF 50+ PA+++</p>
+                            <p class="product-description">Perfect balance of hydration and oil control with green tea extract and vitamin E.</p>
+                            <ul class="product-features">
+                                <li><i class="fas fa-check"></i> Balanced formula</li>
+                                <li><i class="fas fa-check"></i> No white cast</li>
+                                <li><i class="fas fa-check"></i> Antioxidant-rich</li>
+                            </ul>
+                            <div class="product-price">₹599</div>
+                            <div class="product-actions">
+                                <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                                <button class="btn btn-outline quick-view">Quick View</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="acne">
+                        <div class="product-badge">Dermatologist Recommended</div>
+                        <div class="product-image">
+                            <div class="product-bottle-full acne-prone"></div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Acne-Prone Skin Shield</h3>
+                            <p class="product-spf">SPF 50+ PA+++</p>
+                            <p class="product-description">Salicylic acid formula that protects while preventing breakouts and controlling excess oil.</p>
+                            <ul class="product-features">
+                                <li><i class="fas fa-check"></i> Prevents breakouts</li>
+                                <li><i class="fas fa-check"></i> No white cast</li>
+                                <li><i class="fas fa-check"></i> Oil control</li>
+                            </ul>
+                            <div class="product-price">₹649</div>
+                            <div class="product-actions">
+                                <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                                <button class="btn btn-outline quick-view">Quick View</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="oily">
+                        <div class="product-image">
+                            <div class="product-bottle-full oily-skin-tinted"></div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Tinted Oily Skin Solution</h3>
+                            <p class="product-spf">SPF 50+ PA+++</p>
+                            <p class="product-description">Light coverage with oil control for a natural, protected look. Available in 3 shades.</p>
+                            <ul class="product-features">
+                                <li><i class="fas fa-check"></i> Light coverage</li>
+                                <li><i class="fas fa-check"></i> 3 shades available</li>
+                                <li><i class="fas fa-check"></i> Matte finish</li>
+                            </ul>
+                            <div class="product-price">₹699</div>
+                            <div class="product-actions">
+                                <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                                <button class="btn btn-outline quick-view">Quick View</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="dry">
+                        <div class="product-image">
+                            <div class="product-bottle-full dry-skin-luxury"></div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Luxury Dry Skin Formula</h3>
+                            <p class="product-spf">SPF 50+ PA++++</p>
+                            <p class="product-description">Premium formula with peptides and botanical extracts for ultimate hydration and anti-aging.</p>
+                            <ul class="product-features">
+                                <li><i class="fas fa-check"></i> Anti-aging</li>
+                                <li><i class="fas fa-check"></i> Premium ingredients</li>
+                                <li><i class="fas fa-check"></i> No white cast</li>
+                            </ul>
+                            <div class="product-price">₹899</div>
+                            <div class="product-actions">
+                                <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                                <button class="btn btn-outline quick-view">Quick View</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="product-comparison">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Compare Our Formulas</h2>
+                    <p>Find the perfect match for your skin type</p>
+                </div>
+                <div class="comparison-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>SPF Level</th>
+                                <th>Skin Type</th>
+                                <th>Key Ingredients</th>
+                                <th>Finish</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Oily Skin Solution</strong></td>
+                                <td>SPF 50+</td>
+                                <td>Oily</td>
+                                <td>Niacinamide, Zinc Oxide</td>
+                                <td>Matte</td>
+                                <td>₹599</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Dry Skin Comfort</strong></td>
+                                <td>SPF 50+</td>
+                                <td>Dry</td>
+                                <td>Hyaluronic Acid, Ceramides</td>
+                                <td>Dewy</td>
+                                <td>₹599</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Combination Skin Balance</strong></td>
+                                <td>SPF 50+</td>
+                                <td>Combination</td>
+                                <td>Green Tea, Vitamin E</td>
+                                <td>Natural</td>
+                                <td>₹599</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Acne-Prone Skin Shield</strong></td>
+                                <td>SPF 50+</td>
+                                <td>Acne-Prone</td>
+                                <td>Salicylic Acid, Tea Tree</td>
+                                <td>Matte</td>
+                                <td>₹649</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Not Sure Which One to Choose?</h2>
+                    <p>Take our skin type quiz to find your perfect match</p>
+                    <button class="btn btn-primary btn-large">Take the Quiz</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Solara</h3>
+                    <p>Premium sunscreen solutions designed for Indian skin and climate.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="why-choose-us.html">Why Choose Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Care</h4>
+                    <ul>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns & Exchanges</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-envelope"></i> hello@solara.in</p>
+                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Mumbai, Maharashtra</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Solara. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

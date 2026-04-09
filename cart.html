@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Solara Premium Sunscreen</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h1>Solara</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="products.html" class="nav-link">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="why-choose-us.html" class="nav-link">Why Choose Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="skin-quiz-simple.html" class="nav-link">
+                            <i class="fas fa-magic"></i> Skin Quiz
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="orders.html" class="nav-link">
+                            <i class="fas fa-shopping-bag"></i> My Orders
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="cart.html" class="nav-link cart active">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Shopping Cart</h1>
+                <p>Review your selected products</p>
+            </div>
+        </section>
+
+        <section class="cart-section">
+            <div class="container">
+                <div id="cart-loading" class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading your cart...</p>
+                </div>
+                
+                <div id="cart-content" class="cart-content" style="display: none;">
+                    <div class="cart-grid">
+                        <div class="cart-items">
+                            <h2>Your Items</h2>
+                            <div id="cart-items-container" class="cart-items-container">
+                                <!-- Cart items will be dynamically added here -->
+                            </div>
+                            
+                            <div class="cart-empty" id="cart-empty" style="display: none;">
+                                <div class="empty-cart-icon">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                                <h3>Your cart is empty</h3>
+                                <p>Add some products to get started!</p>
+                                <a href="products.html" class="btn btn-primary">Continue Shopping</a>
+                            </div>
+                        </div>
+                        
+                        <div class="cart-summary">
+                            <div class="summary-card">
+                                <h2>Order Summary</h2>
+                                <div class="summary-details">
+                                    <div class="summary-row">
+                                        <span>Subtotal</span>
+                                        <span id="subtotal">Rs. 0</span>
+                                    </div>
+                                    <div class="summary-row">
+                                        <span>Shipping</span>
+                                        <span id="shipping">Free</span>
+                                    </div>
+                                    <div class="summary-row">
+                                        <span>Tax</span>
+                                        <span id="tax">Rs. 0</span>
+                                    </div>
+                                    <div class="summary-row total">
+                                        <span>Total</span>
+                                        <span id="total">Rs. 0</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="promo-code">
+                                    <input type="text" id="promo-code" placeholder="Enter promo code">
+                                    <button class="btn btn-outline" id="apply-promo">Apply</button>
+                                </div>
+                                
+                                <button class="btn btn-primary btn-large" id="checkout-btn">Proceed to Checkout</button>
+                                
+                                <div class="security-info">
+                                    <i class="fas fa-lock"></i>
+                                    <span>Secure checkout powered by SSL encryption</span>
+                                </div>
+                            </div>
+                            
+                            <div class="trust-badges">
+                                <div class="badge">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <span>Secure Payment</span>
+                                </div>
+                                <div class="badge">
+                                    <i class="fas fa-truck"></i>
+                                    <span>Fast Delivery</span>
+                                </div>
+                                <div class="badge">
+                                    <i class="fas fa-undo"></i>
+                                    <span>Easy Returns</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Checkout Modal -->
+        <div id="checkout-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Checkout</h2>
+                    <button class="close-modal" id="close-modal">&times;</button>
+                </div>
+                
+                <form id="checkout-form">
+                    <div class="checkout-section">
+                        <h3>Contact Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="checkout-name">Full Name *</label>
+                                <input type="text" id="checkout-name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="checkout-email">Email Address *</label>
+                                <input type="email" id="checkout-email" name="email" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="checkout-phone">Phone Number *</label>
+                            <input type="tel" id="checkout-phone" name="phone" required>
+                        </div>
+                    </div>
+                    
+                    <div class="checkout-section">
+                        <h3>Shipping Address</h3>
+                        <div class="form-group">
+                            <label for="checkout-address">Street Address *</label>
+                            <input type="text" id="checkout-address" name="address" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="checkout-city">City *</label>
+                                <input type="text" id="checkout-city" name="city" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="checkout-state">State *</label>
+                                <input type="text" id="checkout-state" name="state" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="checkout-pincode">PIN Code *</label>
+                                <input type="text" id="checkout-pincode" name="pincode" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="checkout-country">Country</label>
+                                <input type="text" id="checkout-country" name="country" value="India" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="checkout-section">
+                        <h3>Payment Method</h3>
+                        <div class="payment-options">
+                            <label class="payment-option">
+                                <input type="radio" name="payment-method" value="cod" checked>
+                                <div class="payment-card">
+                                    <i class="fas fa-money-bill-wave"></i>
+                                    <div>
+                                        <strong>Cash on Delivery</strong>
+                                        <p>Pay when you receive your order</p>
+                                    </div>
+                                </div>
+                            </label>
+                            
+                            <label class="payment-option">
+                                <input type="radio" name="payment-method" value="online">
+                                <div class="payment-card">
+                                    <i class="fas fa-credit-card"></i>
+                                    <div>
+                                        <strong>Online Payment</strong>
+                                        <p>Credit/Debit Card, UPI, Net Banking</p>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="order-summary">
+                        <h3>Order Summary</h3>
+                        <div id="checkout-items"></div>
+                        <div class="summary-total">
+                            <strong>Total Amount:</strong>
+                            <span id="checkout-total">Rs. 0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" id="cancel-checkout">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Place Order</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Order Success Modal -->
+        <div id="success-modal" class="modal">
+            <div class="modal-content success-modal">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2>Order Placed Successfully!</h2>
+                <p>Your order has been placed successfully. You will receive a confirmation email shortly.</p>
+                <div class="order-details">
+                    <p><strong>Order ID:</strong> <span id="order-id"></span></p>
+                    <p><strong>Estimated Delivery:</strong> 3-5 business days</p>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-primary" id="continue-shopping">Continue Shopping</button>
+                    <button class="btn btn-outline" id="view-order">View Order</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Solara</h3>
+                    <p>Premium sunscreen solutions designed for Indian skin and climate.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="why-choose-us.html">Why Choose Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Care</h4>
+                    <ul>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns & Exchanges</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-envelope"></i> hello@solara.in</p>
+                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Mumbai, Maharashtra</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Solara. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="cart.js"></script>
+</body>
+</html>

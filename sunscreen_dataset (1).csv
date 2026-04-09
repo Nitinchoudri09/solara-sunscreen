@@ -1,0 +1,13 @@
+skin_type,skin_tone,recommended_spf,product_type,feature
+oily,fair,SPF 50,matte gel,no white cast
+oily,medium,SPF 50,matte gel,sweat proof
+oily,dark,SPF 50,matte gel,no white cast
+dry,fair,SPF 30,cream,hydrating
+dry,medium,SPF 30,cream,moisturizing
+dry,dark,SPF 50,cream,no white cast
+combination,fair,SPF 50,lotion,balanced
+combination,medium,SPF 50,lotion,lightweight
+combination,dark,SPF 50,lotion,no white cast
+acne,fair,SPF 50,gel,non-comedogenic
+acne,medium,SPF 50,gel,oil-free
+acne,dark,SPF 50,gel,no white cast

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Analysis Quiz - Solara Premium Sunscreen</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h1>Solara</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="products.html" class="nav-link">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="why-choose-us.html" class="nav-link">Why Choose Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="cart.html" class="nav-link cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Skin Analysis Quiz</h1>
+                <p>Get personalized sunscreen recommendations based on your unique skin profile</p>
+            </div>
+        </section>
+
+        <section class="quiz-section">
+            <div class="container">
+                <div class="quiz-container">
+                    <div class="quiz-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill"></div>
+                        </div>
+                        <div class="progress-text">
+                            Question <span id="current-question">1</span> of <span id="total-questions">8</span>
+                        </div>
+                    </div>
+
+                    <form id="skin-quiz-form" class="quiz-form">
+                        <!-- Question 1: Skin Type -->
+                        <div class="question-block active" data-question="1">
+                            <h3>How would you describe your skin's oiliness?</h3>
+                            <div class="options-grid">
+                                <label class="option-card">
+                                    <input type="radio" name="oiliness" value="very_dry" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-tint"></i>
+                                        <span>Very Dry - Often feels tight, flaky</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="oiliness" value="dry" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-tint"></i>
+                                        <span>Dry - Sometimes feels tight</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="oiliness" value="normal" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-tint"></i>
+                                        <span>Normal - Balanced moisture</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="oiliness" value="slightly_oily" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-tint"></i>
+                                        <span>Slightly Oily - T-zone gets shiny</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="oiliness" value="oily" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-tint"></i>
+                                        <span>Oily - Gets shiny quickly</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="oiliness" value="very_oily" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-tint"></i>
+                                        <span>Very Oily - Always shiny</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Question 2: Skin Tone -->
+                        <div class="question-block" data-question="2">
+                            <h3>What is your natural skin tone?</h3>
+                            <div class="options-grid">
+                                <label class="option-card">
+                                    <input type="radio" name="complexion" value="very_fair" required>
+                                    <div class="option-content">
+                                        <div class="skin-tone-sample very-fair"></div>
+                                        <span>Very Fair - Burns easily</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="complexion" value="fair" required>
+                                    <div class="option-content">
+                                        <div class="skin-tone-sample fair"></div>
+                                        <span>Fair - Sometimes burns</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="complexion" value="medium" required>
+                                    <div class="option-content">
+                                        <div class="skin-tone-sample medium"></div>
+                                        <span>Medium - Tans gradually</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="complexion" value="olive" required>
+                                    <div class="option-content">
+                                        <div class="skin-tone-sample olive"></div>
+                                        <span>Olive - Tans easily</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="complexion" value="tan" required>
+                                    <div class="option-content">
+                                        <div class="skin-tone-sample tan"></div>
+                                        <span>Tan - Rarely burns</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="complexion" value="dark" required>
+                                    <div class="option-content">
+                                        <div class="skin-tone-sample dark"></div>
+                                        <span>Dark - Very rarely burns</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="complexion" value="very_dark" required>
+                                    <div class="option-content">
+                                        <div class="skin-tone-sample very-dark"></div>
+                                        <span>Very Dark - Never burns</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Question 3: Sensitivity -->
+                        <div class="question-block" data-question="3">
+                            <h3>How sensitive is your skin?</h3>
+                            <div class="options-grid">
+                                <label class="option-card">
+                                    <input type="radio" name="sensitivity" value="not_sensitive" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-shield-alt"></i>
+                                        <span>Not Sensitive - Rarely reacts</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="sensitivity" value="slightly_sensitive" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-shield-alt"></i>
+                                        <span>Slightly Sensitive - Occasional reactions</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="sensitivity" value="sensitive" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-shield-alt"></i>
+                                        <span>Sensitive - Reacts to many products</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="sensitivity" value="very_sensitive" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-shield-alt"></i>
+                                        <span>Very Sensitive - Always careful</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Question 4: Breakouts -->
+                        <div class="question-block" data-question="4">
+                            <h3>How often do you experience breakouts?</h3>
+                            <div class="options-grid">
+                                <label class="option-card">
+                                    <input type="radio" name="breakouts" value="never" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-star"></i>
+                                        <span>Never - Clear skin</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="breakouts" value="rare" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-star"></i>
+                                        <span>Rare - Few times a year</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="breakouts" value="occasional" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-star"></i>
+                                        <span>Occasional - Monthly</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="breakouts" value="frequent" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-star"></i>
+                                        <span>Frequent - Weekly</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Question 5: Pore Size -->
+                        <div class="question-block" data-question="5">
+                            <h3>How would you describe your pore size?</h3>
+                            <div class="options-grid">
+                                <label class="option-card">
+                                    <input type="radio" name="pores" value="very_small" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-circle"></i>
+                                        <span>Very Small - Barely visible</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="pores" value="small" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-circle"></i>
+                                        <span>Small - Difficult to see</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="pores" value="normal" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-circle"></i>
+                                        <span>Normal - Balanced appearance</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="pores" value="large" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-circle"></i>
+                                        <span>Large - Easily visible</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="pores" value="very_large" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-circle"></i>
+                                        <span>Very Large - Very visible</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Question 6: Climate -->
+                        <div class="question-block" data-question="6">
+                            <h3>What's your typical climate/environment?</h3>
+                            <div class="options-grid">
+                                <label class="option-card">
+                                    <input type="radio" name="temperature" value="cold" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-snowflake"></i>
+                                        <span>Cold - Winter dominant</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="temperature" value="moderate" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-cloud-sun"></i>
+                                        <span>Moderate - Seasonal changes</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="temperature" value="hot" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-sun"></i>
+                                        <span>Hot - Summer dominant</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Question 7: Humidity -->
+                        <div class="question-block" data-question="7">
+                            <h3>How humid is your environment?</h3>
+                            <div class="options-grid">
+                                <label class="option-card">
+                                    <input type="radio" name="humidity" value="low" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-tint-slash"></i>
+                                        <span>Low - Dry air</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="humidity" value="moderate" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-tint"></i>
+                                        <span>Moderate - Balanced humidity</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="humidity" value="high" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-tint"></i>
+                                        <span>High - Humid air</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Question 8: Certainty -->
+                        <div class="question-block" data-question="8">
+                            <h3>How certain are you about your answers?</h3>
+                            <div class="options-grid">
+                                <label class="option-card">
+                                    <input type="radio" name="certainty_level" value="very_certain" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-check-double"></i>
+                                        <span>Very Certain - I know my skin well</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="certainty_level" value="certain" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-check"></i>
+                                        <span>Certain - Confident in answers</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="certainty_level" value="somewhat_certain" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-question"></i>
+                                        <span>Somewhat Certain - Pretty sure</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="certainty_level" value="uncertain" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-question"></i>
+                                        <span>Uncertain - Just guessing</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="quiz-actions">
+                            <button type="button" class="btn btn-outline" id="prev-btn" disabled>
+                                <i class="fas fa-arrow-left"></i> Previous
+                            </button>
+                            <button type="button" class="btn btn-primary" id="next-btn">
+                                Next <i class="fas fa-arrow-right"></i>
+                            </button>
+                            <button type="submit" class="btn btn-primary btn-large" id="submit-btn" style="display: none;">
+                                Get My Recommendations <i class="fas fa-magic"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Section (Hidden initially) -->
+        <section id="results-section" class="results-section" style="display: none;">
+            <div class="container">
+                <div class="results-header">
+                    <h2>Your Personalized Recommendations</h2>
+                    <div class="skin-profile">
+                        <div class="profile-card">
+                            <h3>Your Skin Profile</h3>
+                            <div id="profile-summary"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recommendations-container">
+                    <div class="primary-recommendation">
+                        <h3>Perfect Match</h3>
+                        <div id="primary-product"></div>
+                    </div>
+
+                    <div class="secondary-recommendations">
+                        <h3>Also Great For You</h3>
+                        <div class="secondary-products" id="secondary-products"></div>
+                    </div>
+                </div>
+
+                <div class="personalized-tips">
+                    <h3>Personalized Tips for Your Skin</h3>
+                    <div id="tips-container"></div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button class="btn btn-primary" onclick="retakeQuiz()">
+                        <i class="fas fa-redo"></i> Retake Quiz
+                    </button>
+                    <button class="btn btn-secondary" onclick="goToProducts()">
+                        <i class="fas fa-shopping-bag"></i> Shop All Products
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Solara</h3>
+                    <p>Premium sunscreen solutions designed for Indian skin and climate.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="why-choose-us.html">Why Choose Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Care</h4>
+                    <ul>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns & Exchanges</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-envelope"></i> hello@solara.in</p>
+                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Mumbai, Maharashtra</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Solara. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="skin-analyzer.js"></script>
+    <script src="skin-quiz.js"></script>
+</body>
+</html>
